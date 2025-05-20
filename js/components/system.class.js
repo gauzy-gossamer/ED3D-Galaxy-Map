@@ -120,6 +120,20 @@ var System = {
   },
 
 
+  searchSystem: (name) => {
+    name = name.toLowerCase();
+    for (let i = 0; i < System.particleGeo.vertices.length; i++) {
+        const system = System.particleGeo.vertices[i];
+        if (system.name.toLowerCase() === name) {
+            Action.moveToObj(i, system);
+            return system;
+        }
+    }
+
+    return undefined;
+  },
+
+
   /**
    * Init the galaxy particle geometry
    */

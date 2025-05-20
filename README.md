@@ -211,3 +211,11 @@ $( document ).on( "systemClick", function( event, name, infos, url ) {
   ]
 }
 ```
+
+
+## Minify javascript
+To minify javascript from sources run:
+```bash
+echo "var isMinified = true;" > ed3dmap.min.js
+cat ../vendor/renderstats/*.js ../vendor/three-js/*.js ../vendor/tween-js/*.js components/*.class.js ed3dmap.js | minify >> ed3dmap.min.js
+```
