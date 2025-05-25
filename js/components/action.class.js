@@ -18,6 +18,7 @@ var Action = {
   'mouseUpDownTimer' : null,
   'mouseHoverTimer' : null,
   'animPosition' : null,
+  'objClickEvent': null,
 
   'prevScale' : null,
 
@@ -287,8 +288,15 @@ var Action = {
           var selPoint = intersection.object.geometry.vertices[indexPoint];
 
           if(selPoint.visible) {
+            let objInfo = undefined
+            if (this.objClickEvent !== null) {
+                objInfo = this.objClickEvent(selPoint);
+            }
+
+            $('#hud #infos').html('');
+
             $('#hud #infos').html(
-              "<h2>"+selPoint.name+"</h2>"
+              "<h2>"+selPoint.name+"</h2>" + (objInfo ? `<div class="system-info">${objInfo}</div>` : "")
             );
 
             var isMove = obj.moveToObj(indexPoint, selPoint);
@@ -359,8 +367,6 @@ var Action = {
 
     this.oldSel = null;
     this.cursor.selection.visible = false;
-
-    $('#hud #infos').html('');
 
   },
 
